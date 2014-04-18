@@ -14,7 +14,7 @@ Written in modern, standard ANSI C++, using the C++ Standard Library. Modular de
   s.platform     = :osx, '10.6'
   s.requires_arc = false
   s.vendored_libraries = 'lib/*.a'
-  s.source_files = s.public_header_files =
+  s.preserve_paths = s.public_header_files =
      'include/**/*.h',
      'include/**/**/*.h',
      'include/**/**/**/*.h'
