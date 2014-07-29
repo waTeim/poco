@@ -13,7 +13,7 @@ Written in modern, standard ANSI C++, using the C++ Standard Library. Modular de
   s.requires_arc = false
   s.vendored_libraries = 'lib/*.a'
   s.xcconfig = { 'HEADER_SEARCH_PATHS' => '"$(PODS_ROOT)/poco/include"' }
-  s.public_header_files = s.source_files =
+  s.private_header_files = s.source_files =
      'include/**/*.h',
      'include/**/**/*.h',
      'include/**/**/**/*.h'
