@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
 Written in modern, standard ANSI C++, using the C++ Standard Library. Modular design, very few external dependencies, builds out-of-the-box. Good mix of "classic" object-oriented design with modern C++. Clean, easy-to-understand code (we frequently get compliments on that), consistent coding style, comprehensive test suite.
                    DESC
   s.homepage     = 'http://pocoproject.org/'
-  s.license      = 'BOOST'
+  s.license      = 'POCO'
   s.author       = { 'waTeim' => 'truthset@gmail.com' }
   s.source       = { :git => 'https://github.com/waTeim/poco.git', :tag => s.version.to_s }
   s.platform     = :osx, '10.6'
