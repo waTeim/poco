@@ -9,11 +9,12 @@ Written in modern, standard ANSI C++, using the C++ Standard Library. Modular de
   s.license      = 'BOOST'
   s.author       = { "waTeim" => "truthset@gmail.com" }
   s.source       = { :git => "https://github.com/waTeim/poco.git", :tag => s.version.to_s }
-
+  s.frameworks   = 'poco'
   s.platform     = :osx, '10.6'
   s.requires_arc = false
+  s.header_dir = 'include'
   s.vendored_libraries = 'lib/*.a'
-  s.preserve_paths =
+  s.source_files =
      'include/**/*.h',
      'include/**/**/*.h',
      'include/**/**/**/*.h'
