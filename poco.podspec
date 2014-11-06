@@ -9,7 +9,8 @@ Written in modern, standard ANSI C++, using the C++ Standard Library. Modular de
   s.license      = 'POCO'
   s.author       = { 'waTeim' => 'truthset@gmail.com' }
   s.source       = { :git => 'https://github.com/waTeim/poco.git', :tag => s.version.to_s }
-  s.platform     = :osx, '10.10'
+  s.platform     = :osx
+  s.osx.deployment_target = '10.10'
   s.requires_arc = false
   s.vendored_libraries = 'lib/*.a'
   s.xcconfig = { 'HEADER_SEARCH_PATHS' => '"$(PODS_ROOT)/poco/include"' }
