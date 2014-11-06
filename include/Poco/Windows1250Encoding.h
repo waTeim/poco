@@ -1,15 +1,15 @@
 //
-// RefCountedObject.h
+// Windows1250Encoding.h
 //
-// $Id: //poco/1.4/Foundation/include/Poco/RefCountedObject.h#2 $
+// $Id: //poco/1.4/Foundation/include/Poco/Windows1250Encoding.h#1 $
 //
 // Library: Foundation
-// Package: Core
-// Module:  RefCountedObject
+// Package: Text
+// Module:  Windows1250Encoding
 //
-// Definition of the RefCountedObject class.
+// Definition of the Windows1250Encoding class.
 //
-// Copyright (c) 2004-2009, Applied Informatics Software Engineering GmbH.
+// Copyright (c) 2005-2007, Applied Informatics Software Engineering GmbH.
 // and Contributors.
 //
 // Permission is hereby granted, free of charge, to any person or organization
@@ -36,74 +36,39 @@
 //
 
 
-#ifndef Foundation_RefCountedObject_INCLUDED
-#define Foundation_RefCountedObject_INCLUDED
+#ifndef Foundation_Windows1250Encoding_INCLUDED
+#define Foundation_Windows1250Encoding_INCLUDED
 
 
 #include "Poco/Foundation.h"
-#include "Poco/AtomicCounter.h"
+#include "Poco/TextEncoding.h"
 
 
 namespace Poco {
 
 
-class Foundation_API RefCountedObject
-	/// A base class for objects that employ
-	/// reference counting based garbage collection.
-	///
-	/// Reference-counted objects inhibit construction
-	/// by copying and assignment.
+class Foundation_API Windows1250Encoding: public TextEncoding
+	/// Windows Codepage 1250 text encoding.
+	/// Based on: http://msdn.microsoft.com/en-us/goglobal/cc305143
 {
 public:
-	RefCountedObject();
-		/// Creates the RefCountedObject.
-		/// The initial reference count is one.
-
-	void duplicate() const;
-		/// Increments the object's reference count.
-		
-	void release() const throw();
-		/// Decrements the object's reference count
-		/// and deletes the object if the count
-		/// reaches zero.
-		
-	int referenceCount() const;
-		/// Returns the reference count.
-
-protected:
-	virtual ~RefCountedObject();
-		/// Destroys the RefCountedObject.
-
+	Windows1250Encoding();
+	~Windows1250Encoding();
+	const char* canonicalName() const;
+	bool isA(const std::string& encodingName) const;
+	const CharacterMap& characterMap() const;
+	int convert(const unsigned char* bytes) const;
+	int convert(int ch, unsigned char* bytes, int length) const;
+	int queryConvert(const unsigned char* bytes, int length) const;
+	int sequenceLength(const unsigned char* bytes, int length) const;
+	
 private:
-	RefCountedObject(const RefCountedObject&);
-	RefCountedObject& operator = (const RefCountedObject&);
-
-	mutable AtomicCounter _counter;
+	static const char* _names[];
+	static const CharacterMap _charMap;
 };
-
-
-//
-// inlines
-//
-inline int RefCountedObject::referenceCount() const
-{
-	return _counter.value();
-}
-
-
-inline void RefCountedObject::duplicate() const
-{
-	++_counter;
-}
-
-
-inline void RefCountedObject::release() const throw()
-{
-	if (--_counter == 0) delete this;
-}
 
 
 } // namespace Poco
 
 
-#endif // Foundation_RefCountedObject_INCLUDED
+#endif // Foundation_Windows1250Encoding_INCLUDED

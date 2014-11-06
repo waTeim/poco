@@ -1,15 +1,15 @@
 //
-// RefCountedObject.h
+// Latin2Encoding.h
 //
-// $Id: //poco/1.4/Foundation/include/Poco/RefCountedObject.h#2 $
+// $Id: //poco/1.4/Foundation/include/Poco/Latin2Encoding.h#1 $
 //
 // Library: Foundation
-// Package: Core
-// Module:  RefCountedObject
+// Package: Text
+// Module:  Latin2Encoding
 //
-// Definition of the RefCountedObject class.
+// Definition of the Latin2Encoding class.
 //
-// Copyright (c) 2004-2009, Applied Informatics Software Engineering GmbH.
+// Copyright (c) 2004-2007, Applied Informatics Software Engineering GmbH.
 // and Contributors.
 //
 // Permission is hereby granted, free of charge, to any person or organization
@@ -36,74 +36,41 @@
 //
 
 
-#ifndef Foundation_RefCountedObject_INCLUDED
-#define Foundation_RefCountedObject_INCLUDED
+#ifndef Foundation_Latin2Encoding_INCLUDED
+#define Foundation_Latin2Encoding_INCLUDED
 
 
 #include "Poco/Foundation.h"
-#include "Poco/AtomicCounter.h"
+#include "Poco/TextEncoding.h"
 
 
 namespace Poco {
 
 
-class Foundation_API RefCountedObject
-	/// A base class for objects that employ
-	/// reference counting based garbage collection.
+class Foundation_API Latin2Encoding: public TextEncoding
+	/// ISO Latin-2 (8859-2) text encoding.
 	///
-	/// Reference-counted objects inhibit construction
-	/// by copying and assignment.
+	/// Latin-2 is basically Latin-1 with the EURO sign plus
+	/// some other minor changes.
 {
 public:
-	RefCountedObject();
-		/// Creates the RefCountedObject.
-		/// The initial reference count is one.
-
-	void duplicate() const;
-		/// Increments the object's reference count.
-		
-	void release() const throw();
-		/// Decrements the object's reference count
-		/// and deletes the object if the count
-		/// reaches zero.
-		
-	int referenceCount() const;
-		/// Returns the reference count.
-
-protected:
-	virtual ~RefCountedObject();
-		/// Destroys the RefCountedObject.
-
+	Latin2Encoding();
+	virtual ~Latin2Encoding();
+	const char* canonicalName() const;
+	bool isA(const std::string& encodingName) const;
+	const CharacterMap& characterMap() const;
+	int convert(const unsigned char* bytes) const;
+	int convert(int ch, unsigned char* bytes, int length) const;
+	int queryConvert(const unsigned char* bytes, int length) const;
+	int sequenceLength(const unsigned char* bytes, int length) const;
+	
 private:
-	RefCountedObject(const RefCountedObject&);
-	RefCountedObject& operator = (const RefCountedObject&);
-
-	mutable AtomicCounter _counter;
+	static const char* _names[];
+	static const CharacterMap _charMap;
 };
-
-
-//
-// inlines
-//
-inline int RefCountedObject::referenceCount() const
-{
-	return _counter.value();
-}
-
-
-inline void RefCountedObject::duplicate() const
-{
-	++_counter;
-}
-
-
-inline void RefCountedObject::release() const throw()
-{
-	if (--_counter == 0) delete this;
-}
 
 
 } // namespace Poco
 
 
-#endif // Foundation_RefCountedObject_INCLUDED
+#endif // Foundation_Latin2Encoding_INCLUDED
