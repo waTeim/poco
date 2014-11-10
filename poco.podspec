@@ -8,7 +8,7 @@ Written in modern, standard ANSI C++, using the C++ Standard Library. Modular de
   s.homepage     = 'http://pocoproject.org/'
   s.license      = 'POCO'
   s.author       = { 'waTeim' => 'truthset@gmail.com' }
-  s.source       = { :git => 'https://github.com/waTeim/poco.git', :tag => s.version.to_s }
+  s.source       = { :git => 'https://github.com/waTeim/poco.git', :tag => '1.4.6y' }
   s.platform     = :osx
   s.requires_arc = false
   s.vendored_libraries = 'lib/*.a'
