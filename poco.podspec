@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'poco'
-  s.version      = '1.4.7y'
+  s.version      = '1.4.6y'
   s.summary      = 'The C++ POCO Library'
   s.description  = <<-DESC
 Written in modern, standard ANSI C++, using the C++ Standard Library. Modular design, very few external dependencies, builds out-of-the-box. Good mix of "classic" object-oriented design with modern C++. Clean, easy-to-understand code (we frequently get compliments on that), consistent coding style, comprehensive test suite.
